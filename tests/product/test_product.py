@@ -6,8 +6,10 @@ def test_cria_produto():
         1,
         "Coca-Cola",
         "Coca-Cola Company",
-        "2020-01-01", "2020-12-31",
-        "123456789", "em local seco e fresco."
+        "2020-01-01",
+        "2020-12-31",
+        "123456789",
+        "em local seco e fresco.",
     )
     assert novoProduto.id == 1
     assert novoProduto.nome_do_produto == "Coca-Cola"
@@ -16,4 +18,3 @@ def test_cria_produto():
     assert novoProduto.data_de_validade == "2020-12-31"
     assert novoProduto.numero_de_serie == "123456789"
     assert novoProduto.instrucoes_de_armazenamento == "em local seco e fresco."
-
