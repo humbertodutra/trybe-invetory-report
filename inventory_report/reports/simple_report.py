@@ -41,8 +41,5 @@ class SimpleReport:
             f"Data de validade mais próxima: {expiring_date:%Y-%m-%d}\n"
             f"Empresa com mais produtos: {contador_empresa}"
         )
-        print(retorno)
+
         return retorno
-
-
-
