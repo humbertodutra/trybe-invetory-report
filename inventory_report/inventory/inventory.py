@@ -1,4 +1,3 @@
-
 from inventory_report.reports.simple_report import SimpleReport
 from inventory_report.reports.complete_report import CompleteReport
 import csv
@@ -43,7 +42,7 @@ class Inventory:
     @classmethod
     def open_xml(cls, path, type):
         with open(path) as file:
-            doc = xmltodict.parse(file.read())['dataset']['record']
+            doc = xmltodict.parse(file.read())["dataset"]["record"]
             if type == "simples":
                 return SimpleReport.generate(doc)
             elif type == "completo":
