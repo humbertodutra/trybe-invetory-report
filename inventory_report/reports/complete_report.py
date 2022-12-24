@@ -1,5 +1,6 @@
 from inventory_report.reports.simple_report import SimpleReport
 
+
 class CompleteReport(SimpleReport):
     def generate(rep: list):
         simple = SimpleReport.generate(rep)
@@ -57,4 +58,4 @@ smallMock = [
     },
 ]
 
-print(CompleteReport.generate(smallMock))
+
