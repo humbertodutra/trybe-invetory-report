@@ -2,7 +2,8 @@ from inventory_report.reports.simple_report import SimpleReport
 
 
 class CompleteReport(SimpleReport):
-    def generate(rep: list):
+    @classmethod
+    def generate(cls, rep: list):
         simple = SimpleReport.generate(rep)
         products_per_company = {}
 
@@ -17,45 +18,3 @@ class CompleteReport(SimpleReport):
             retorno += f"- {product}: {products_per_company[product]}\n"
 
         return retorno
-
-
-smallMock = [
-    {
-        "id": 1,
-        "nome_do_produto": "MESA",
-        "nome_da_empresa": "Forces of Nature",
-        "data_de_fabricacao": "2022-05-04",
-        "data_de_validade": "2023-02-09",
-        "numero_de_serie": "FR48",
-        "instrucoes_de_armazenamento": "Conservar ao abrigo de luz",
-    },
-    {
-        "id": 1,
-        "nome_do_produto": "MESA",
-        "nome_da_empresa": "Forces of Nature",
-        "data_de_fabricacao": "2022-05-04",
-        "data_de_validade": "2023-02-09",
-        "numero_de_serie": "FR48",
-        "instrucoes_de_armazenamento": "Conservar ao abrigo de luz",
-    },
-    {
-        "id": 1,
-        "nome_do_produto": "Cadeira ",
-        "nome_da_empresa": "Forces of Galo",
-        "data_de_fabricacao": "2022-05-04",
-        "data_de_validade": "2025-02-10",
-        "numero_de_serie": "FR48",
-        "instrucoes_de_armazenamento": "Conservar ao abrigo de luz",
-    },
-    {
-        "id": 1,
-        "nome_do_produto": "MESA",
-        "nome_da_empresa": "Forces of Nature",
-        "data_de_fabricacao": "2022-05-04",
-        "data_de_validade": "2023-02-09",
-        "numero_de_serie": "FR48",
-        "instrucoes_de_armazenamento": "Conservar ao abrigo de luz",
-    },
-]
-
-

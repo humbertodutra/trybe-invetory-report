@@ -2,8 +2,8 @@ from datetime import datetime
 
 
 class SimpleReport:
-    @staticmethod
-    def generate(data):
+    @classmethod
+    def generate(cls, data: list):
         oldest_factorydate = datetime.strptime(
             data[0]["data_de_fabricacao"], "%Y-%m-%d"
         )
@@ -43,45 +43,3 @@ class SimpleReport:
         )
 
         return retorno
-
-
-smallMock = [
-    {
-        "id": 1,
-        "nome_do_produto": "MESA",
-        "nome_da_empresa": "Forces of Nature",
-        "data_de_fabricacao": "2022-05-04",
-        "data_de_validade": "2023-02-09",
-        "numero_de_serie": "FR48",
-        "instrucoes_de_armazenamento": "Conservar ao abrigo de luz",
-    },
-    {
-        "id": 1,
-        "nome_do_produto": "MESA",
-        "nome_da_empresa": "Forces of Nature",
-        "data_de_fabricacao": "2022-05-04",
-        "data_de_validade": "2023-02-09",
-        "numero_de_serie": "FR48",
-        "instrucoes_de_armazenamento": "Conservar ao abrigo de luz",
-    },
-    {
-        "id": 1,
-        "nome_do_produto": "Cadeira ",
-        "nome_da_empresa": "Forces of Galo",
-        "data_de_fabricacao": "2022-05-04",
-        "data_de_validade": "2025-02-10",
-        "numero_de_serie": "FR48",
-        "instrucoes_de_armazenamento": "Conservar ao abrigo de luz",
-    },
-    {
-        "id": 1,
-        "nome_do_produto": "MESA",
-        "nome_da_empresa": "Forces of Nature",
-        "data_de_fabricacao": "2022-05-04",
-        "data_de_validade": "2023-02-09",
-        "numero_de_serie": "FR48",
-        "instrucoes_de_armazenamento": "Conservar ao abrigo de luz",
-    },
-]
-
-
