@@ -1,51 +1,47 @@
-from inventory_report.reports.simple_report import SimpleReport
-from inventory_report.reports.complete_report import CompleteReport
 import csv
 import json
+from inventory_report.reports.simple_report import SimpleReport
+from inventory_report.reports.complete_report import CompleteReport
 import xmltodict
 
 
 class Inventory:
-    @classmethod
-    def import_data(cls, path, type):
-        if "csv" in path:
-            return Inventory.open_csv(path, type)
-        elif "json" in path:
-            return Inventory.open_json(path, type)
-        elif "xml" in path:
-            return Inventory.open_xml(path, type)
+    def import_data(path, report_type):
+        if path.endswith(".csv"):
+            return Inventory.to_csv(path, report_type)
+        elif path.endswith(".json"):
+            return Inventory.to_json(path, report_type)
+        elif path.endswith(".xml"):
+            return Inventory.import_xml(path, report_type)
         else:
             raise ValueError("Arquivo inválido")
 
-    @classmethod
-    def open_csv(cls, path, type):
-        with open(path, encoding="utf-8") as file:
-            file_reader = csv.DictReader(file, delimiter=",", quotechar='"')
-            if type == "simples":
-                return SimpleReport.generate(list(file_reader))
-            elif type == "completo":
-                return CompleteReport.generate(list(file_reader))
+    def to_csv(path, report_type):
+        with open(path, encoding="utf-8") as csv_file:
+            reader = csv.DictReader(csv_file, delimiter=",", quotechar='"')
+            if report_type == "simples":
+                return SimpleReport.generate(list(reader))
+            elif report_type == "completo":
+                return CompleteReport.generate(list(reader))
             else:
-                raise ValueError("Tipo inválido")
+                raise ValueError("Tipo de relatório inválido")
 
-    @classmethod
-    def open_json(cls, path, type):
-        with open(path) as file:
-            file_reader = json.load(file)
-            if type == "simples":
-                return SimpleReport.generate(file_reader)
-            elif type == "completo":
-                return CompleteReport.generate(file_reader)
+    def to_json(path, report_type):
+        with open(path, encoding="utf-8") as json_file:
+            reader = json.load(json_file)
+            if report_type == "simples":
+                return SimpleReport.generate(reader)
+            elif report_type == "completo":
+                return CompleteReport.generate(reader)
             else:
-                raise ValueError("Tipo inválido")
+                raise ValueError("Tipo de relatório inválido")
 
-    @classmethod
-    def open_xml(cls, path, type):
+    def import_xml(path, report_type):
         with open(path) as file:
             doc = xmltodict.parse(file.read())["dataset"]["record"]
-            if type == "simples":
+            if report_type == "simples":
                 return SimpleReport.generate(doc)
-            elif type == "completo":
+            elif report_type == "completo":
                 return CompleteReport.generate(doc)
             else:
                 raise ValueError("Tipo inválido")
