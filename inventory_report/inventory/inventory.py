@@ -6,7 +6,8 @@ import xmltodict
 
 
 class Inventory:
-    def import_data(path, report_type):
+    @classmethod
+    def import_data(cls, path, report_type):
         if path.endswith(".csv"):
             return Inventory.to_csv(path, report_type)
         elif path.endswith(".json"):
@@ -16,7 +17,8 @@ class Inventory:
         else:
             raise ValueError("Arquivo inválido")
 
-    def to_csv(path, report_type):
+    @classmethod
+    def to_csv(cls, path, report_type):
         with open(path, encoding="utf-8") as csv_file:
             reader = csv.DictReader(csv_file, delimiter=",", quotechar='"')
             if report_type == "simples":
@@ -26,7 +28,8 @@ class Inventory:
             else:
                 raise ValueError("Tipo de relatório inválido")
 
-    def to_json(path, report_type):
+    @classmethod
+    def to_json(cls, path, report_type):
         with open(path, encoding="utf-8") as json_file:
             reader = json.load(json_file)
             if report_type == "simples":
@@ -36,7 +39,8 @@ class Inventory:
             else:
                 raise ValueError("Tipo de relatório inválido")
 
-    def import_xml(path, report_type):
+    @classmethod
+    def import_xml(cls, path, report_type):
         with open(path) as file:
             doc = xmltodict.parse(file.read())["dataset"]["record"]
             if report_type == "simples":
