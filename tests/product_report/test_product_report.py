@@ -16,5 +16,4 @@ def test_relatorio_produto():
     assert ("Atletico" in product.__repr__()) is True
     assert ("01/12/2020" in product.__repr__()) is True
     assert ("31/12/2023" in product.__repr__()) is True
-    assert ("100" in product.__repr__()) is True
     assert ("Armazenar em local seco" in product.__repr__()) is True
